@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kat's Time Translator</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#111827">
+
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="title">
+        <h1>Kat’s Time Translator ⏰</h1>
+        <div class="sub">PWA drill — Japanese ↔ Digital time</div>
+      </div>
+
+      <div class="pill">
+        <span id="version">v0.1.0</span>
+        <span class="dot">•</span>
+        <span id="streak">Streak: 0</span>
+      </div>
+    </header>
+
+    <main>
+      <section id="screen-home" class="card">
+        <h2>Practice</h2>
+
+        <div class="grid">
+          <label class="field">
+            <span>Question mix</span>
+            <select id="mixMode">
+              <option value="mixed" selected>Mixed (JP↔Digital)</option>
+              <option value="jp2dig">Japanese → Digital</option>
+              <option value="dig2jp">Digital → Japanese</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Questions per session</span>
+            <select id="count">
+              <option>10</option>
+              <option selected>20</option>
+              <option>30</option>
+              <option>50</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Show Japanese as</span>
+            <select id="jpStyle">
+              <option value="mixed" selected>Mixed (かな/漢字)</option>
+              <option value="kana">かな only</option>
+              <option value="kanji">漢字 only</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Digital prompt style</span>
+            <select id="digStyle">
+              <option value="mixed" selected>Mixed (12h/24h)</option>
+              <option value="h12">12-hour (AM/PM)</option>
+              <option value="h24">24-hour</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="btnStart" class="btn primary">Start</button>
+
+        <div class="hint">
+          Tips: For Japanese answers, use <b>午前</b>/<b>午後</b>. Accepts <b>かな</b> or <b>漢字</b>.
+        </div>
+      </section>
+
+      <section id="screen-quiz" class="card hidden">
+        <div class="row between">
+          <div>
+            <div class="kicker" id="qMeta">Question</div>
+            <div class="q" id="questionText">…</div>
+          </div>
+          <div class="score">
+            <div><b id="qIndex">1</b>/<span id="qTotal">20</span></div>
+            <div class="small" id="sessionScore">0 correct</div>
+          </div>
+        </div>
+
+        <div class="answerBlock">
+          <input id="answer" class="input" autocomplete="off" autocapitalize="off" spellcheck="false"
+                 placeholder="Type your answer…" />
+          <button id="btnCheck" class="btn">Check</button>
+        </div>
+
+        <div id="feedback" class="feedback hidden"></div>
+
+        <div class="row between">
+          <button id="btnSkip" class="btn ghost">Skip</button>
+          <button id="btnEnd" class="btn ghost">End session</button>
+        </div>
+      </section>
+
+      <section id="screen-done" class="card hidden">
+        <h2>Session complete ✅</h2>
+        <p id="doneSummary">…</p>
+        <button id="btnAgain" class="btn primary">Practice again</button>
+        <button id="btnHome" class="btn ghost">Back to home</button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Offline-ready PWA</span>
+      <span class="dot">•</span>
+      <span id="installHint">Install: Share → “Add to Home Screen” (iPhone)</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
